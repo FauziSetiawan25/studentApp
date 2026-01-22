@@ -103,10 +103,10 @@ Request body:
 
 ``` json
 {
-  "studentId": "S001",
-  "firstName": "Budi",
-  "lastName": "Santoso",
-  "birthDate": "2000-03-15"
+  "id": "S001",
+  "namaDepan": "Budi",
+  "namaBelakang": "Santoso",
+  "tanggalLahir": "2000-03-15"
 }
 ```
 
@@ -125,7 +125,7 @@ Response:
 ``` json
 [
   {
-    "studentId": "S001",
+    "id": "S001",
     "fullName": "Budi Santoso",
     "age": 24
   }
@@ -156,9 +156,9 @@ Request body:
 
 ``` json
 {
-  "firstName": "Budi",
-  "lastName": "Updated",
-  "birthDate": "2000-03-15"
+  "namaDepan": "Budi",
+  "namaBelakang": "Sentosa",
+  "tanggalLahir": "2000-03-15"
 }
 ```
 
