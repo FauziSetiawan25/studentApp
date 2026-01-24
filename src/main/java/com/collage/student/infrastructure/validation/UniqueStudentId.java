@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UniqueStudentId {
 
-    String message() default "Student ID already exists";
+    String message() default "ID already exists";
 
     Class<?>[] groups() default {};
 
