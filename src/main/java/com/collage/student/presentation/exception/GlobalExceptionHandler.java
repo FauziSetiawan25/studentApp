@@ -1,4 +1,4 @@
-package com.collage.student.presentation.exeption;
+package com.collage.student.presentation.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

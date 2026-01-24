@@ -20,35 +20,51 @@ concerns:
     │   └── Student
     ├── application.service
     │   └── StudentService
-    ├── infrastructure.persistence
-    │   ├── StudentEntity
-    │   └── StudentRepository
-    ├── infrastructure.bootstrap
-    │   └── DataInitializer
+    ├── infrastructure
+    │   ├── bootstrap
+    |   |   └── DataInitializer
+    │   ├── config
+    |   |   └── WebConfig
+    │   └── persistence
+    │       ├── StudentEntity
+    │       └── StudentRepository
     ├── presentation.controller
-    │   ├── StudentController
-    │   ├── StudentRequest
-    │   └── StudentResponse
+    │   ├── controller
+    │   |   └── StudentController  
+    │   ├── dto
+    │   |   ├── StudentDetailResponse
+    |   |   ├── StudentRequest
+    │   |   └── StudentResponse
+    |   └── exception
+    |       └── GlobalExceptionHandler
     └── StudentApplication
 
 ### Layer Responsibilities
 
 -   **Domain**
-    -   Core business logic
-    -   Age calculation
-    -   Full name formatting
-    -   Independent of framework and database
+    -   Represents the core business model (Student)
+    -   Contains business rules and calculations (e.g. age calculation)
+    -   Handles derived attributes such as full name formatting
+    -   Fully independent from frameworks, databases, and external libraries
 -   **Application**
-    -   Use cases and application flow
-    -   Orchestrates domain and persistence layers
+    -   Implements application use cases and business workflows
+    -   Coordinates interactions between domain models and persistence layer
+    -   Contains application-level logic (create, update, delete, retrieve students)
+    -   Maps persistence entities to domain models
+    - Does not contain HTTP or database-specific code
 -   **Infrastructure**
-    -   Database persistence (JPA / H2)
-    -   Repository implementations
-    -   Data initialization (dummy data)
+    -   Handles technical concerns and external dependencies
+    -   Implements database persistence using JPA and H2
+    -   Provides repository implementations for data access
+    -   Contains database configuration and bootstrap logic
+    -   Initializes sample data for development and demonstration purposes
 -   **Presentation**
-    -   REST controllers
-    -   Request & response DTOs
-    -   HTTP status code handling
+    -   Exposes the application functionality via RESTful HTTP endpoints
+    -   Handles incoming requests and outgoing responses
+    -   Defines request and response DTOs for API contracts
+    -   Applies HTTP status codes and request validation
+    -   Contains global exception handling (GlobalExceptionHandler) to translate domain and validation errors into proper HTTP responses
+    -   Does not contain business logic or persistence logic
 
 ------------------------------------------------------------------------
 
@@ -103,10 +119,10 @@ Request body:
 
 ``` json
 {
-  "id": "S001",
-  "namaDepan": "Budi",
-  "namaBelakang": "Santoso",
-  "tanggalLahir": "2000-03-15"
+    "id": "A001",
+    "firstName": "Budi",
+    "lastName": "Santoso",
+    "birthDate": "2001-03-15"
 }
 ```
 
@@ -125,7 +141,7 @@ Response:
 ``` json
 [
   {
-    "id": "S001",
+    "id": "A001",
     "fullName": "Budi Santoso",
     "age": 24
   }
@@ -156,9 +172,9 @@ Request body:
 
 ``` json
 {
-  "namaDepan": "Budi",
-  "namaBelakang": "Sentosa",
-  "tanggalLahir": "2000-03-15"
+    "firstName": "Hendra",
+    "lastName": "Santoso",
+    "birthDate": "2001-03-15"
 }
 ```
 
