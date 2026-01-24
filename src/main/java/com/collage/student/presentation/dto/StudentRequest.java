@@ -1,6 +1,7 @@
-package com.collage.student.presentation.controller;
+package com.collage.student.presentation.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Pattern;
 
@@ -8,22 +9,23 @@ import java.time.LocalDate;
 
 public record StudentRequest(
 
-        @NotBlank(message = "ID wajib diisi")
+        @NotBlank(message = "ID is required")
         String id,
 
-        @NotBlank(message = "Nama depan wajib diisi")
+        @NotBlank(message = "The first name is required")
         @Pattern(
                 regexp = "^[A-Za-z]+$",
-                message = "Nama depan hanya boleh berisi huruf alfabet"
+                message = "The first name must only contain letters of the alphabet"
         )
-        String namaDepan,
+        String firstName,
 
         @Pattern(
                 regexp = "^[A-Za-z]*$",
-                message = "Nama belakang hanya boleh berisi huruf alfabet"
+                message = "The last name must only contain letters of the alphabet"
         )
-        String namaBelakang,
+        String lastName,
 
-        @PastOrPresent(message = "Tanggal lahir tidak boleh melebihi hari ini")
-        LocalDate tanggalLahir
+        @NotNull(message = "Birth date is required")
+        @PastOrPresent(message = "The birth date cannot exceed today")
+        LocalDate birthDate
 ) {}

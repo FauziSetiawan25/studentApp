@@ -11,47 +11,47 @@ import java.time.LocalDate;
 public class StudentEntity {
     @Id
     private String id;
-    private String namaDepan;
-    private String namaBelakang;
-    private LocalDate tanggalLahir;
+    private String firstName;
+    private String lastName;
+    private LocalDate birthDate;
 
     // required by JPA
     protected StudentEntity() {
 
     }
 
-    public StudentEntity(String id, String namaDepan, String namaBelakang, LocalDate tanggalLahir){
+    public StudentEntity(String id, String firstName, String lastName, LocalDate birthDate){
         this.id = id;
-        this.namaDepan = namaDepan;
-        this.namaBelakang = namaBelakang;
-        this.tanggalLahir = tanggalLahir;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getNamaDepan() {
-        return namaDepan;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNamaDepan(String namaDepan) {
-        namaDepan = namaDepan;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getNamaBelakang() {
-        return namaBelakang;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setNamaBelakang(String namaBelakang) {
-        namaBelakang = namaBelakang;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public LocalDate getTanggalLahir() {
-        return tanggalLahir;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setTanggalLahir(LocalDate tanggalLahir) {
-        this.tanggalLahir = tanggalLahir;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 }

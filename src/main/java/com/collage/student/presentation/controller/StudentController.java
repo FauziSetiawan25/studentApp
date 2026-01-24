@@ -2,6 +2,10 @@ package com.collage.student.presentation.controller;
 
 import com.collage.student.application.service.StudentService;
 import com.collage.student.domain.model.Student;
+import com.collage.student.presentation.dto.StudentDetailResponse;
+import com.collage.student.presentation.dto.StudentRequest;
+import com.collage.student.presentation.dto.StudentResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,23 +30,32 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentResponse> createStudent(@RequestBody StudentRequest request) {
-        Student student = new Student(request.id(), request.namaDepan(), request.namaBelakang(), request.tanggalLahir());
+    public ResponseEntity<StudentResponse> createStudent(@Valid @RequestBody StudentRequest request) {
+        Student student = new Student(request.id(), request.firstName(), request.lastName(), request.birthDate());
         return ResponseEntity.status(HttpStatus.CREATED).body(StudentResponse.from(studentService.create(student)));
     }
 
     @GetMapping("/{id}")
-    public StudentResponse getById(@PathVariable String id) {
-        return StudentResponse.from(studentService.getById(id));
+    public ResponseEntity<StudentDetailResponse> getById(@PathVariable String id) {
+        Student student = studentService.getById(id);
+
+        return ResponseEntity.ok(
+                new StudentDetailResponse(
+                        student.getId(),
+                        student.getFirstName(),
+                        student.getLastName(),
+                        student.getBirthDate()
+                )
+        );
     }
 
     @PutMapping("/{id}")
-    public StudentResponse updateStudent(@PathVariable String id, @RequestBody StudentRequest request) {
+    public StudentResponse updateStudent(@PathVariable String id, @Valid @RequestBody StudentRequest request) {
         Student student = new Student(
                 id,
-                request.namaDepan(),
-                request.namaBelakang(),
-                request.tanggalLahir()
+                request.firstName(),
+                request.lastName(),
+                request.birthDate()
         );
         return StudentResponse.from(studentService.update(id,student));
     }

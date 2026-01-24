@@ -5,43 +5,43 @@ import java.time.Period;
 
 public class Student {
     private final String id;
-    private final String namaDepan;
-    private final String namaBelakang;
-    private final LocalDate tanggalLahir;
+    private final String firstName;
+    private final String lastName;
+    private final LocalDate birthDate;
 
 
-    public Student(String id,String namaDepan,String namaBelakang,LocalDate tanggalLahir) {
+    public Student(String id,String firstName,String lastName,LocalDate birthDate) {
         this.id = id;
-        this.namaDepan = namaDepan;
-        this.namaBelakang = namaBelakang;
-        this.tanggalLahir = tanggalLahir;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getNamaDepan() {
-        return namaDepan;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getNamaBelakang() {
-        return namaBelakang;
+    public String getLastName() {
+        return lastName;
     }
 
-    public LocalDate getTanggalLahir() {
-        return tanggalLahir;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public String getNamaLengkap() {
-        if (namaBelakang==null||namaBelakang.isBlank()) {
-            return namaDepan;
+    public String getFullName() {
+        if (lastName==null||lastName.isBlank()) {
+            return firstName;
         }else  {
-            return namaDepan+ " " +namaBelakang;
+            return firstName+ " " +lastName;
         }
     }
 
-    public int getUsia() {
-        return Period.between(tanggalLahir,LocalDate.now()).getYears();
+    public int getAge() {
+        return Period.between(birthDate,LocalDate.now()).getYears();
     }
 }
