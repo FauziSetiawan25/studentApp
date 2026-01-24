@@ -3,8 +3,9 @@ package com.collage.student.presentation.controller;
 import com.collage.student.application.service.StudentService;
 import com.collage.student.domain.model.Student;
 import com.collage.student.presentation.dto.StudentDetailResponse;
-import com.collage.student.presentation.dto.StudentRequest;
+import com.collage.student.presentation.dto.StudentCreateRequest;
 import com.collage.student.presentation.dto.StudentResponse;
+import com.collage.student.presentation.dto.StudentUpdateRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentResponse> createStudent(@Valid @RequestBody StudentRequest request) {
+    public ResponseEntity<StudentResponse> createStudent(@Valid @RequestBody StudentCreateRequest request) {
         Student student = new Student(request.id(), request.firstName(), request.lastName(), request.birthDate());
         return ResponseEntity.status(HttpStatus.CREATED).body(StudentResponse.from(studentService.create(student)));
     }
@@ -50,7 +51,7 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public StudentResponse updateStudent(@PathVariable String id, @Valid @RequestBody StudentRequest request) {
+    public StudentResponse updateStudent(@PathVariable String id, @Valid @RequestBody StudentUpdateRequest request) {
         Student student = new Student(
                 id,
                 request.firstName(),

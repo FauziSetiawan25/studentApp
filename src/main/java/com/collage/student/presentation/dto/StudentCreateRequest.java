@@ -8,13 +8,13 @@ import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDate;
 
-public record StudentRequest(
+public record StudentCreateRequest(
 
         @NotBlank(message = "ID is required")
         @UniqueStudentId
         @Pattern(
                 regexp = "^[A-Za-z0-9._/-]+$",
-                message = "NIM format is invalid"
+                message = "ID format is invalid"
         )
         String id,
 
