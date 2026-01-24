@@ -25,10 +25,13 @@ concerns:
     |   |   └── DataInitializer
     │   ├── config
     |   |   └── WebConfig
-    │   └── persistence
-    │       ├── StudentEntity
-    │       └── StudentRepository
-    ├── presentation.controller
+    │   ├── persistence
+    │   |   ├── StudentEntity
+    │   |   └── StudentRepository
+    │   └── validation
+    │       ├── UniqueStudentId
+    │       └── UniqueStudentIdValidator
+    ├── presentation
     │   ├── controller
     │   |   └── StudentController  
     │   ├── dto
@@ -58,6 +61,7 @@ concerns:
     -   Provides repository implementations for data access
     -   Contains database configuration and bootstrap logic
     -   Initializes sample data for development and demonstration purposes
+    -   Validation for check data before insert to database
 -   **Presentation**
     -   Exposes the application functionality via RESTful HTTP endpoints
     -   Handles incoming requests and outgoing responses

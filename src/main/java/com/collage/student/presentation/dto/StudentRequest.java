@@ -1,5 +1,6 @@
 package com.collage.student.presentation.dto;
 
+import com.collage.student.infrastructure.validation.UniqueStudentId;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -10,17 +11,22 @@ import java.time.LocalDate;
 public record StudentRequest(
 
         @NotBlank(message = "ID is required")
+        @UniqueStudentId
+        @Pattern(
+                regexp = "^[A-Za-z0-9._/-]+$",
+                message = "NIM format is invalid"
+        )
         String id,
 
         @NotBlank(message = "The first name is required")
         @Pattern(
-                regexp = "^[A-Za-z]+$",
+                regexp = "^[A-Za-z]+([ '-][A-Za-z]+)*$",
                 message = "The first name must only contain letters of the alphabet"
         )
         String firstName,
 
         @Pattern(
-                regexp = "^[A-Za-z]*$",
+                regexp = "^[A-Za-z]*([ '-][A-Za-z]+)*$",
                 message = "The last name must only contain letters of the alphabet"
         )
         String lastName,
